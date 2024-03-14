@@ -1,2 +1,5 @@
-#/bin/bash
-perl -MPOSIX -e '$0="dummpy process"; pause' &
+#!/bin/bash
+while [ true ]
+do
+    sleep 1d
+done
