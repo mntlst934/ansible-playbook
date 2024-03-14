@@ -1,5 +1,6 @@
 #!/bin/bash
-var="Hello World"
  
-# print it 
-echo "$var"
+while true
+do
+ sleep 100
+done
