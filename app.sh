@@ -1,6 +1,6 @@
 #!/bin/bash
- 
-while true
-do
- sleep 10
-done
+sleep 1 &
+process_id=$!
+echo "PID: $process_id"
+wait $process_id
+echo "Exit status: $?"
