@@ -1,0 +1,234 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Service Order API",
+    "description": "An API for creating service orders",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost"
+    }
+  ],
+  "paths": {
+    "/serviceOrder": {
+      "post": {
+        "summary": "Create a new service order",
+        "description": "Create a new service order with provided details",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "orderItem": {
+                    "type": "array",
+                    "minimum":1,
+                    "maximum":500,
+                    "items":{
+                      "type": "object"
+                      },
+                    "required": ["id", "action", "service"],
+                    "description": "A list of service order items to be processed by this order. "
+                  },
+                    "relatedParty": {
+                    "type": "array",
+                    "required": ["name", "role"],
+                    "items":{
+                     "type": "object"
+                       },                  
+                    "description": "A list of parties which are involved in this order and the role they are playing."
+                  },
+                  "category": {
+                    "type": "string",
+                    "description": "Used to categorize the order, useful for the OM system, such as: Broadband, TVOption."
+                  },
+                    "description": {
+                    "type": "string",
+                    "description": "Description of a service that is being ordered"
+                  },
+                    "externalId": {
+                    "type": "string",
+                    "description": "ID given by the consumer to facilitate searches"
+                  },
+                  "note": {
+                    "type": "array",
+                    "items":{
+                      "type": "string"
+                    },
+                    "description": "Extra-information about the order; e.g. useful to add extra delivery information that could be useful for a human process."
+                  },
+                  "notificationContact": {
+                    "type": "string",
+                    "description": "Contact attached to the order to send back information regarding this order."
+                  },
+                  "orderRelationship": {
+                    "type": "array",
+                      "items": {
+                        "type": "string"
+                        },
+                    "description": ""
+                  },
+                  "priority": {
+                    "type": "string",
+                    "maximum":4,
+                    "minimum":0,
+                    "description": "Can be used by consumers to prioritize orders in a Service Order Management system"
+                  },
+                  "requestedCompletionDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Requested delivery date from the requestors perspective."
+                  },
+                  "requestedStartDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Requested delivery date from the requestors perspective."
+                  }
+                },
+                "required": ["orderItem", "relatedParty"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Service order created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "order_id": {
+                      "type": "string",
+                      "description": "The ID of the newly created service order"
+                    },
+                    "href": {
+                      "type": "string",
+                      "description": "The reference of the appointment"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Invalid input data provided"
+          },
+          "500": {
+            "description": "Internal server error. Unable to process the request"
+          }
+        }
+      }
+    },
+    "/serviceOrder/{order_id}": {
+      "get": {
+        "summary": "Retrieve a service order by order ID",
+        "description": "Retrieve details of a service order using its unique order ID",
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "description": "The ID of the service order to retrieve",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Service order retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "order_id": {
+                      "type": "string",
+                      "description": "The ID of the service order"
+                    },
+                    "href": {
+                      "type": "string",
+                      "description": "The reference of the appointment"
+                    },
+                    "relatedParty": {
+                    "type": "array",
+                    "items":{
+                     "type": "string"
+                       },                  
+                    "description": "A list of parties which are involved in this order and the role they are playing."
+                  },
+                  "category": {
+                    "type": "string",
+                    "description": "Used to categorize the order, useful for the OM system, such as: Broadband, TVOption."
+                  },
+                    "description": {
+                    "type": "string",
+                    "description": "Description of a service that is being ordered"
+                  },
+                    "externalId": {
+                    "type": "string",
+                    "description": "ID given by the consumer to facilitate searches"
+                  },
+                  "note": {
+                    "type": "array",
+                    "items":{
+                      "type": "string"
+                    },
+                    "description": "Extra-information about the order; e.g. useful to add extra delivery information that could be useful for a human process."
+                  },
+                  "notificationContact": {
+                    "type": "string",
+                    "description": "Contact attached to the order to send back information regarding this order."
+                  },
+                  "orderDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "provide order date"
+                  },
+                  "orderRelationship": {
+                    "type": "array",
+                      "items": {
+                        "type": "string"
+                        },
+                    "description": ""
+                  },
+                  "priority": {
+                    "type": "string",
+                    "maximum":4,
+                    "minimum":0,
+                    "description": "Can be used by consumers to prioritize orders in a Service Order Management system"
+                  },
+                  "state": {
+                    "type": "string",
+                    "description": "provide state"
+                  },
+                  "requestedCompletionDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Requested delivery date from the requestors perspective."
+                    },
+                    "expectedCompletionDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": " Expected delivery date amended by the provider."
+                  },
+                  "startDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Date when the order was started for processing."
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Service order not found"
+          }
+        }
+      }
+    }
+  }
+}
