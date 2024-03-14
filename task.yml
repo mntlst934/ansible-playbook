@@ -27,7 +27,7 @@
 
 #    - name: extract file to destination folder
 #      unarchive:
-#        src: "/home/{{ username }}/gitpull/{{ appname }}."
+#        src: "/home/{{ username }}/gitpull/{{ appname }}.tar.gz"
 #        dest: "/home/{{ username }}"
 #        remote_scr: yes
 
