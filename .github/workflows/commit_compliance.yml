@@ -1,9 +1,6 @@
 name: Commit Message Compliance
-
 on:
-  schedule:
-    - cron: '0 0 * * *'  # Runs daily at midnight
-
+ workflow_dispatch:
 jobs:
   check_commits:
     runs-on: ubuntu-latest
