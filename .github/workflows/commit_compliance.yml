@@ -1,6 +1,9 @@
 name: Commit Message Compliance
+
 on:
- workflow_dispatch:
+  schedule:
+    - cron: '*/10 * * * *'  # Every 10 minutes
+
 jobs:
   check_commits:
     runs-on: ubuntu-latest
