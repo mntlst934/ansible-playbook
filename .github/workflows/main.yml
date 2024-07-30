@@ -2,7 +2,7 @@ name: Commit Message Compliance
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Runs daily at midnight
+    - cron: '* * * * *'  # Runs daily at midnight
 
 jobs:
   check_commits:
