@@ -1,9 +1,6 @@
 name: Commit Message Compliance
-
 on:
-  schedule:
-    - cron: '* * * * *'  # Runs daily at midnight
-
+  workflow_dispatch:
 jobs:
   check_commits:
     runs-on: GitHub
