@@ -3,8 +3,8 @@ from github import Github
 import os
 
 # GitHub token and repo info
-GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
-REPO_NAME = 'your_username/your_repo'
+GITHUB_TOKEN = os.getenv('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')
+REPO_NAME = 'mntlst934/ansible-playbook'
 
 # Define the JIRA ticket pattern (example: PROJECT-123)
 jira_ticket_pattern = re.compile(r'\bPROJECT-\d+\b')
