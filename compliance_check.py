@@ -4,7 +4,7 @@ import os
 
 # GitHub token and repo info
 GITHUB_TOKEN = os.getenv('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')
-REPO_NAME = 'mntlst934/ansible-playbook.git'
+REPO_NAME = 'mntlst934/ansible-playbook'
 
 # Define the JIRA ticket pattern (example: PROJECT-123)
 jira_ticket_pattern = re.compile(r'\bPROJECT-\d+\b')
