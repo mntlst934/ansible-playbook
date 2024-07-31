@@ -14,7 +14,7 @@ g = Github(GITHUB_TOKEN)
 repo = g.get_repo(REPO_NAME)
 
 # Fetch recent commits (adjust `per_page` and `since` for desired range)
-commits = repo.get_commits(per_page=100)
+commits = repo.get_commits(per_page=30)
 
 # Evaluate commit messages
 report = []
